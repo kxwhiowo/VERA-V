@@ -1,0 +1,4 @@
+# External MD Judge Configuration
+_target_: ext_judge.md_judge.MDJudge
+model_name: OpenSafetyLab/MD-Judge-v0.1
+device: ${judge1_device} 

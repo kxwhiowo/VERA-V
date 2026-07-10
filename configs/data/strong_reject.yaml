@@ -1,0 +1,5 @@
+_target_: strong_reject.load_datasets.load_strongreject_small
+# api_load_fn: 
+#   _target_: strong_reject.load_datasets.load_strongreject_small
+#   _partial_: true
+# target_col: forbidden_prompt

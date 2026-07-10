@@ -1,0 +1,25 @@
+_target_: attacker.vlm_dual.VLM_Dual
+batch_size: ${batch_size}
+attacker_device: ${attacker_device}
+attacker_device2: ${attacker_device2}
+base_model_id: lmsys/vicuna-7b-v1.5
+# base_model_id: lmsys/vicuna-13b-v1.5
+lora_config:
+  _target_: peft.LoraConfig
+  r: 8
+  lora_alpha: 16
+  target_modules:
+    - q_proj
+    - v_proj
+    - k_proj
+    - o_proj
+  lora_dropout: 0.05
+  bias: none
+  task_type: CAUSAL_LM
+train_gen_config: 
+  max_new_tokens: 120
+  do_sample: true
+  temperature: 1.4
+  # top_k: 50
+  top_p: 0.9
+  min_length: 10

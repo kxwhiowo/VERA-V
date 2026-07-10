@@ -1,0 +1,24 @@
+defaults: 
+  - _self_
+  - judge: hb_judge
+  - ext_judge: combined_judge
+  - attacker: vlm_1diff_1typo
+  - loss: vlm_loss
+  - optimizer: adamw
+  - target: qwen2.5
+  - data: harmbench
+  - diffusion: stable-diffusion-v1-5
+
+device: cuda
+num_queries: 100
+batch_size: 4
+save_dir: harmbench50_1diff_1typo/outputs/ablation_1diff_1typo/target_${target.model_name}_attacker_${attacker.base_model_id}_judge_${judge.model_name}_data_${data.file_path}/run_time/
+checkpoint_every: 1000
+log_every: 1
+val_every: 1000
+attacker_device: cuda:5
+attacker_device2: cuda:6
+judge_device: cuda:7
+diffusion_device: cuda:4
+max_queries: 20
+threshold: 0.90

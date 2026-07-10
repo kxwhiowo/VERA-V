@@ -1,0 +1,14 @@
+defaults: 
+  - _self_
+  - judge: hb_judge
+  - target: qwen2.5
+  - data: harmbench
+
+device: cuda
+save_dir: harmbench50/outputs/ablation_distractor_only/target_${target.model_name}_judge_${judge.model_name}_data_${data.file_path}/run_time/
+log_every: 1
+judge_device: cuda:5
+diffusion_device: cuda:6
+threshold: 0.90
+start_idx: 0
+end_idx: 49

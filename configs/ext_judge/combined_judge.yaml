@@ -1,0 +1,6 @@
+# Combined External Judge Configuration
+# Uses both MD Judge and Llama Guard 2, outputs 'safe' if either outputs 'safe'
+_target_: ext_judge.combined_judge.CombinedJudge
+device: ${judge_device}
+md_device: ${judge_device}
+llama_device: ${judge_device} 

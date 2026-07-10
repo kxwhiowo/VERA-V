@@ -1,0 +1,10 @@
+_target_: attacker.bestofn.BestOfN
+batch_size: ${batch_size}
+attacker_device: ${attacker_device}
+base_model_id: lmsys/vicuna-7b-v1.5
+gen_config: 
+  max_new_tokens: 200
+  do_sample: true
+  temperature: 0.8 
+  top_p: 0.9
+jailbreak_name: "best_of_n"

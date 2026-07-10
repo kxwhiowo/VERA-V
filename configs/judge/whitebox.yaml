@@ -1,0 +1,2 @@
+_target_: judge.judge_whitebox.JudgeWhiteBox
+model_name: ${target.model_name}

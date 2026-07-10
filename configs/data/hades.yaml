@@ -1,0 +1,2 @@
+_target_: utils.data_utils.load_hades
+file_path: ${hydra:runtime.cwd}/HADES_behaviours/HADES.json

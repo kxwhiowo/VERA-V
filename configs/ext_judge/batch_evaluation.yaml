@@ -1,0 +1,24 @@
+# Batch Evaluation Configuration for External Judges
+# This configuration demonstrates how to use external judges for batch safety evaluation
+
+# === Llama Guard 2 (Fast binary classification) ===
+llama_guard:
+  _target_: ext_judge.llama_guard.LlamaGuard2Judge
+  model_name: meta-llama/Meta-Llama-Guard-2-8B
+  device: ${judge2_device}
+
+# === MD Judge (Detailed category analysis) ===
+md_judge:
+  _target_: ext_judge.md_judge.MDJudge
+  model_name: OpenSafetyLab/MD-Judge-v0.1
+  device: ${judge1_device}
+
+# Device configuration
+judge1_device: cuda:0  # For MD Judge
+judge2_device: cuda:1  # For Llama Guard 2
+
+# Usage Notes:
+# - Both judges support evaluate_batch(prompts, responses) -> List[str]
+# - Output format: ["safe", "unsafe", "safe", ...] 
+# - Use different devices to run both judges simultaneously if needed
+# - Llama Guard 2 is faster, MD Judge provides more detailed analysis 

@@ -1,0 +1,10 @@
+_target_: diffusion.sd3.SD3
+model_name: stabilityai/stable-diffusion-3-medium-diffusers
+target_device: ${diffusion_device}
+generation_conf:
+  num_inference_steps: 28
+  guidance_scale: 7.0
+  height: 1024
+  width: 1024
+  seed: 1
+  safety_checker: false

@@ -1,0 +1,30 @@
+defaults: 
+  - _self_
+  - judge: hb_judge
+  - ext_judge: combined_judge
+  - attacker: dual_vlm
+  - loss: vlm_loss
+  - optimizer: adamw
+  - target: qwen2.5
+  - data: harmbench
+  - diffusion: stable-diffusion-v1-5
+
+device: cuda
+
+# Total logical batch size (N in the Monte Carlo estimator)
+batch_size: 16
+# Actual samples per forward pass (fits in GPU memory)
+micro_batch_size: 4
+# num_accum_steps = batch_size / micro_batch_size = 2
+
+num_queries: 100
+save_dir: harmbench50/textimgae/outputs/training_accum_16/target_${target.model_name}_attacker_${attacker.base_model_id}_judge_${judge.model_name}_data_${data.file_path}/run_time/
+checkpoint_every: 1000
+log_every: 1
+val_every: 1000
+attacker_device: cuda:4
+attacker_device2: cuda:7
+judge_device: cuda:5
+diffusion_device: cuda:3
+max_queries: 20
+threshold: 0.90

@@ -1,0 +1,7 @@
+_target_: judge.llamaguard_judge.JudgeWrapperLlamaGuard
+# model_name: meta-llama/Llama-Guard-3-8B
+model_name: meta-llama/Meta-Llama-3-8B-Instruct
+device: ${judge_device} 
+safe_word: safe
+unsafe_word: unsafe
+judge_type: unsafe_prob

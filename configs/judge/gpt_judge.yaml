@@ -1,0 +1,9 @@
+_target_: judge.api_judge.APIJudge
+client: 
+  _target_: openai.OpenAI
+  api_key: ${oc.env:OPENAI_API_KEY}
+model_name: gpt-4o-mini 
+num_tokens: 10
+temperature: 1
+top_k: 10
+max_val: 10

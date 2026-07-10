@@ -1,0 +1,3 @@
+_target_: judge.sr_ft_judge.StrongRejectJudge
+model_name: qylu4156/strongreject-15k-v1
+device: ${judge_device} 

@@ -1,0 +1,4 @@
+_target_: judge.harmbench_judge.HarmBenchJudge
+model_name: cais/HarmBench-Mistral-7b-val-cls
+device: ${judge_device} 
+# in training, we use the mistral one, in eval we use the llama one

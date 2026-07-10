@@ -1,0 +1,3 @@
+_target_: judge.bert_judge.GPTFuzzJudge
+model_name: hubert233/GPTFuzz
+device: ${judge_device} 

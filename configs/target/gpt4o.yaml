@@ -1,0 +1,10 @@
+_target_: target.vlm_api.VLMAPIWrapper
+
+client: 
+  _target_: openai.AsyncOpenAI
+  api_key: ${oc.env:OPENAI_API_KEY}
+
+model_name: gpt-4o-2024-08-06
+max_tokens: 512
+temperature: 1
+top_p: 1.0

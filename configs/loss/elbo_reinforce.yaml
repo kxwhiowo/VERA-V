@@ -1,0 +1,7 @@
+_target_: training.elbo.ELBO
+_partial_: true 
+device: ${attacker_device}
+queries_to_use: original
+entropy_coef: 0.4
+kl_coef: 0.8
+baseline_momentum: 0.95

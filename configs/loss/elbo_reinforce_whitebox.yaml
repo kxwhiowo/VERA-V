@@ -1,0 +1,4 @@
+_target_: training.elbo_whitebox.ELBOWhiteBox
+_partial_: true 
+device: ${attacker_device}
+queries_to_use: original

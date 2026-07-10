@@ -1,0 +1,4 @@
+# External Llama Guard 2 Judge Configuration
+_target_: ext_judge.llama_guard.LlamaGuard2Judge
+model_name: meta-llama/Meta-Llama-Guard-2-8B
+device: ${judge2_device} 

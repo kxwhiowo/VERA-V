@@ -1,0 +1,8 @@
+_target_: target.vlm_wrapper.VLMWrapper
+model_name: Qwen/Qwen2-VL-7B-Instruct
+target_device: ${diffusion_device}
+generation_conf: 
+  do_sample: false  
+  top_k: 1
+  max_new_tokens: 1024
+  temperature: 0 

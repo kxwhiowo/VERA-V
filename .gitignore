@@ -1,0 +1,54 @@
+# Run outputs and results
+outputs/
+final_results/
+testtime/
+safe_datapoints/
+bestofmodel/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local CS-DJ runtime artifacts
+CS_DJ_main/csdj_timed_results/
+CS_DJ_main/llava_images/
+CS_DJ_main/image_embedding/
+CS_DJ_main/distraction_images/
+CS_DJ_main/temp_timed_image_data/
+CS_DJ_main/benchmark_tmp/
+CS_DJ_main/combine_image_data/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and caches
+*.log
+.cache/
+.hydra/

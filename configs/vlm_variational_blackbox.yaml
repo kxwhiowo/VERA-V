@@ -1,0 +1,23 @@
+defaults: 
+  - judge: sr_ft
+  - attacker: vlm_var
+  - loss: vlm_loss
+  - optimizer: adamw
+  - target: llava-v1.5
+  - data: advbench_direct
+  - diffusion: stable-diffusion-v1-5
+
+device: cuda
+num_queries: 100
+batch_size: 2
+save_dir: training/target_${target.model_name}/attacker_${attacker.base_model_id}/judge_${judge.model_name}/
+checkpoint_every: 1000
+log_every: 1
+val_every: 1000
+attacker_device: cuda:0
+attacker_device2: cuda:1
+judge_device: cuda:2
+diffusion_device: cuda:3
+max_queries: 50
+threshold: 0.95
+

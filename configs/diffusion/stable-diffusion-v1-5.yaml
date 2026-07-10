@@ -1,0 +1,10 @@
+_target_: diffusion.stable-diffusion-v1-5.StableDiffusionV1_5
+model_name: runwayml/stable-diffusion-v1-5
+target_device: ${judge_device}
+generation_conf:
+  num_inference_steps: 50
+  guidance_scale: 7.5
+  height: 512
+  width: 512
+  seed: 1
+  safety_checker: false
