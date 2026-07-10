@@ -228,7 +228,7 @@ title={{VERA}-V: Variational Inference Framework for Jailbreaking Vision-Languag
 author={Qilin Liao and Anamika Lochab and Ruqi Zhang},
 year={2026},
 booktitle={ICML},
-url={https://openreview.net/forum?id=97IeQrvSqb}
+url={https://openreview.net/forum?id=tj9EwfaxHm}
 }
 ```
 
