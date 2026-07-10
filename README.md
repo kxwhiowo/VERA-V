@@ -209,7 +209,13 @@ VERA-V/
     └── script/              # image_embeding.py, Visual-Enhanced_Distraction.py, ...
 ```
 
+## Evaluation
 
+To evaluate the output, use `harmfulness_harmbench.py` to test the attack success rate (ASR).
+
+```
+python harmfulness_harmbench.py --input_file xxx
+```
 
 ## Citation
 

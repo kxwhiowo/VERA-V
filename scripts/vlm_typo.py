@@ -252,22 +252,7 @@ def main(cfg):
                 # optimizer.step()
                 JB = JB + 1
                 PASS = True
-                
-                # Save the best adversarial image from this batch when threshold is passed
-                # save_dir = os.path.join(run_dir, "concatenated_images")
-                # os.makedirs(save_dir, exist_ok=True)
-                #
-                # # Find the best image in this batch (the one that triggered the threshold)
-                # best_batch_idx = int(np.argmax(batch_scores))
-                # best_batch_image = concatenated_images[best_batch_idx]
-                # best_batch_score = batch_scores[best_batch_idx]
-                #
-                # # Create a descriptive filename
-                # image_filename = f"best_adv_image_prompt_{prompt_idx:04d}_score_{best_batch_score:.4f}_threshold_passed.png"
-                # image_path = os.path.join(save_dir, image_filename)
-                # best_batch_image.save(image_path)
-                # print(f"Saved best adversarial image (threshold passed) to: {image_path}")
-                
+
                 print("------------------------------------------------------------------------------------")
                 break
 
@@ -298,18 +283,7 @@ def main(cfg):
         best_score = scores[best_adv_prompt_idx]
         prompts_total.append(best_adv_prompt)
         responses_total.append(cur_prompt_resp[best_adv_prompt_idx])
-        
-        # if len(cur_images) > 0 and best_adv_prompt_idx < len(cur_images):
-        #     save_dir = os.path.join(run_dir, "concatenated_images")
-        #     os.makedirs(save_dir, exist_ok=True)
-        #
-        #     best_image = cur_images[best_adv_prompt_idx]
-        #     # Create a descriptive filename
-        #     image_filename = f"best_adv_image_prompt_{prompt_idx:04d}_idx_{best_adv_prompt_idx:04d}_score_{best_score:.4f}.png"
-        #     image_path = os.path.join(save_dir, image_filename)
-        #     best_image.save(image_path)
-        #     print(f"Saved best adversarial image (overall) to: {image_path}")
-        
+
         # Save the best prompt immediately to a file
         best_prompts_file = f"{run_dir}/best_prompts_incremental.txt"
         with open(best_prompts_file, "a") as f:
@@ -327,16 +301,6 @@ def main(cfg):
             f.write("=" * 80 + "\n\n")
         
         print(f"Best prompt saved to {best_prompts_file}")
-        
-        # if best_score <= THRESHOLD and PASS == False:
-        #     fail_cases.append({
-        #         'prompt_idx': prompt_idx,
-        #         'original_prompt': prompt,
-        #         'best_adv_prompt': best_adv_prompt,
-        #         'best_response': cur_prompt_resp[best_adv_prompt_idx],
-        #         'best_score': best_score,
-        #         'threshold': THRESHOLD
-        #     })
         
         print(f"Response: {cur_prompt_resp[best_adv_prompt_idx]}")
         print()
@@ -401,102 +365,10 @@ def main(cfg):
             # f.write(f"Image File: image_{all_adversarial_data['indices'][best_idx]:06d}.png\n")
             f.write("-" * 30 + "\n\n")
     
-    # print(f"Saved {len(all_adversarial_data['indices'])} adversarial prompt-image pairs")
-    # print(f"Images saved to {images_dir}")
+
     print(f"Summary saved to {run_dir}/adversarial_data_summary.txt")
     
-    # # Output best prompts for fail cases at the end
-    # if fail_cases:
-    #     print("\n" + "=" * 80)
-    #     print("BEST PROMPTS FOR FAIL CASES (JAILBREAKING UNSUCCESSFUL)")
-    #     print("=" * 80)
-    #     print(f"Total fail cases: {len(fail_cases)}")
-    #     print(f"Threshold used: {THRESHOLD}")
-    #     print()
-    #
-    #     for i, fail_case in enumerate(fail_cases):
-    #         print(f"FAIL CASE {i+1}:")
-    #         print(f"Prompt Index: {fail_case['prompt_idx']}")
-    #         print(f"Original Prompt: {fail_case['original_prompt']}")
-    #         print(f"Best Adversarial Prompt: {fail_case['best_adv_prompt']}")
-    #         print(f"Best Response: {fail_case['best_response']}")
-    #         print(f"Best Score: {fail_case['best_score']:.4f} (Threshold: {fail_case['threshold']})")
-    #         print("-" * 80)
-    #
-    #     # Also save fail cases to a separate file
-    #     with open(f"{run_dir}/fail_cases_summary.txt", "w") as f:
-    #         f.write("BEST PROMPTS FOR FAIL CASES (JAILBREAKING UNSUCCESSFUL)\n")
-    #         f.write("=" * 80 + "\n")
-    #         f.write(f"Total fail cases: {len(fail_cases)}\n")
-    #         f.write(f"Threshold used: {THRESHOLD}\n\n")
-    #
-    #         for i, fail_case in enumerate(fail_cases):
-    #             f.write(f"FAIL CASE {i+1}:\n")
-    #             f.write(f"Prompt Index: {fail_case['prompt_idx']}\n")
-    #             f.write(f"Original Prompt: {fail_case['original_prompt']}\n")
-    #             f.write(f"Best Adversarial Prompt: {fail_case['best_adv_prompt']}\n")
-    #             f.write(f"Best Response: {fail_case['best_response']}\n")
-    #             f.write(f"Best Score: {fail_case['best_score']:.4f} (Threshold: {fail_case['threshold']})\n")
-    #             f.write("-" * 80 + "\n\n")
-    #
-    #     print(f"Fail cases summary saved to {run_dir}/fail_cases_summary.txt")
-    # else:
-    #     print("\n" + "=" * 80)
-    #     print("NO FAIL CASES - ALL PROMPTS SUCCESSFULLY JAILBROKEN!")
-    #     print("=" * 80)
-
-    # # Save best adversarial prompts for each datapoint to a separate file
-    # print("\n" + "=" * 80)
-    # print("SAVING BEST ADVERSARIAL PROMPTS FOR EACH DATAPOINT")
-    # print("=" * 80)
-    #
-    # # Create a list to store best prompts for each datapoint
-    # best_adv_prompts_by_datapoint = []
-    #
-    # # Group by prompt_id and find the best score for each
-    # prompt_groups = {}
-    # for i in range(len(all_adversarial_data['indices'])):
-    #     prompt_id = all_adversarial_data['prompt_ids'][i]
-    #     if prompt_id not in prompt_groups:
-    #         prompt_groups[prompt_id] = []
-    #     prompt_groups[prompt_id].append(i)
-    #
-    # # For each prompt group, find the best adversarial prompt (by highest score)
-    # for prompt_id in sorted(prompt_groups.keys()):
-    #     group_indices = prompt_groups[prompt_id]
-    #     best_idx = max(group_indices, key=lambda x: all_adversarial_data['scores'][x])
-    #
-    #     best_adv_prompts_by_datapoint.append({
-    #         'datapoint_id': prompt_id,
-    #         'original_prompt': all_adversarial_data['original_prompts'][best_idx],
-    #         'best_adversarial_prompt': all_adversarial_data['adversarial_prompts'][best_idx],
-    #         'best_response': all_adversarial_data['responses'][best_idx],
-    #         'best_score': all_adversarial_data['scores'][best_idx],
-    #         'query_count': all_adversarial_data['query_counts'][best_idx],
-    #         'loss': all_adversarial_data['losses'][best_idx]
-    #     })
-    #
-    # # Save to a new file
-    # best_prompts_file = f"{run_dir}/best_adv_prompts_by_datapoint.txt"
-    # with open(best_prompts_file, "w") as f:
-    #     f.write("BEST ADVERSARIAL PROMPTS FOR EACH DATAPOINT\n")
-    #     f.write("=" * 80 + "\n\n")
-    #     f.write(f"Total datapoints processed: {len(best_adv_prompts_by_datapoint)}\n")
-    #     f.write(f"Threshold used: {THRESHOLD}\n\n")
-    #
-    #     for i, datapoint_data in enumerate(best_adv_prompts_by_datapoint):
-    #         f.write(f"DATAPOINT {i+1}:\n")
-    #         f.write(f"Datapoint ID: {datapoint_data['datapoint_id']}\n")
-    #         f.write(f"Original Prompt: {datapoint_data['original_prompt']}\n")
-    #         f.write(f"Best Adversarial Prompt: {datapoint_data['best_adversarial_prompt']}\n")
-    #         f.write(f"Best Response: {datapoint_data['best_response']}\n")
-    #         f.write(f"Best Score: {datapoint_data['best_score']:.4f}\n")
-    #         f.write(f"Query Count: {datapoint_data['query_count']}\n")
-    #         f.write(f"Loss: {datapoint_data['loss']:.4f}\n")
-    #         f.write("-" * 80 + "\n\n")
-    #
-    # print(f"Best adversarial prompts saved to {best_prompts_file}")
-    # print(f"Total datapoints with best prompts: {len(best_adv_prompts_by_datapoint)}")
+   
 
     # Print final overall statistics
     print("\n" + "=" * 80)
@@ -515,26 +387,6 @@ def main(cfg):
     print(f"Average prompts per round: {avg_prompts_per_round:.2f}")
     print(f"Average rounds per prompt: {avg_rounds_per_prompt:.2f}")
 
-    # # Save CSV file with original prompts and best adversarial responses
-    # print("\n" + "=" * 80)
-    # print("SAVING CSV FILE WITH ORIGINAL PROMPTS AND BEST ADVERSARIAL RESPONSES")
-    # print("=" * 80)
-    #
-    # # Create DataFrame for CSV
-    # csv_data = []
-    # for datapoint_data in best_adv_prompts_by_datapoint:
-    #     csv_data.append({
-    #         'original_prompt': datapoint_data['original_prompt'],
-    #         'best_adversarial_response': datapoint_data['best_response']
-    #     })
-    #
-    # # Create DataFrame and save to CSV
-    # csv_df = pd.DataFrame(csv_data)
-    # csv_file_path = f"{run_dir}/original_prompts_vs_best_responses.csv"
-    # csv_df.to_csv(csv_file_path, index=False)
-    #
-    # print(f"CSV file saved to: {csv_file_path}")
-    # print(f"CSV contains {len(csv_data)} rows with original prompts and best adversarial responses")
 
 if __name__ == "__main__":
     main()
