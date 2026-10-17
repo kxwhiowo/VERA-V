@@ -1,4 +1,4 @@
-# VERA-V
+# VERA-V \[ICML 2026\]
 
 ## Abstract
 
